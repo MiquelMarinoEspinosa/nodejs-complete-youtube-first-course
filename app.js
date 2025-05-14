@@ -1,17 +1,7 @@
-console.log('My first nodejs app')
+const fs = require('fs');
 
-const readline = require('readline');
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
+let textIn = fs.readFileSync('./Files/input.txt', 'utf-8');
+console.log(textIn);
 
-rl.question("Please enter your name: ", (name) => {
-    console.log("You entered: " + name);
-    rl.close();
-});
-
-rl.on('close', () => {
-    console.log("Interface closed");
-    process.exit(0);
-})
+let content = `Data read from input.txt: ${textIn} \nDate created ${new Date()}`
+fs.writeFileSync('./Files/output.txt', content);
