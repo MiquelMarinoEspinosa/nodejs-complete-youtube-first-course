@@ -1,7 +1,7 @@
-const fs = require('fs');
+let fs = require('fs')
 
-let textIn = fs.readFileSync('./Files/input.txt', 'utf-8');
-console.log(textIn);
-
-let content = `Data read from input.txt: ${textIn} \nDate created ${new Date()}`
-fs.writeFileSync('./Files/output.txt', content);
+//Reading file asynchronously
+fs.readFile('./Files/input.txt', 'utf-8', (err, data) => {
+    console.log(data);
+});
+console.log('Reading file....');
