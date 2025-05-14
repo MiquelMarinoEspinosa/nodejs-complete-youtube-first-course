@@ -8,8 +8,7 @@ docker build --build-arg USER_NAME=$(git config --global user.name) --build-arg 
 ```
 
 ```
-docker run -i -t -d --rm --name app.node -v .:/app -v ~
-/.ssh:/root/.ssh app/node
+docker run -i -t -d --rm --name app.node -v .:/app app/node
 ```
 
 Access to docker container
