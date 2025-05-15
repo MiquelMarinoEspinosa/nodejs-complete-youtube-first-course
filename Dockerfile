@@ -1,13 +1,21 @@
-FROM node:alpine
+FROM node:latest
 
-ARG USER_NAME=""
-ARG USER_EMAIL=""
-RUN apk update && apk add \
-    git \
-    openssh-client
+ARG UNAME=""
+ARG UID=""
+ARG GID=""
 
-RUN git config --global user.name ${USER_NAME}
-RUN git config --global user.email ${USER_EMAIL}
+ARG GIT_USER_NAME=""
+ARG GIT_USER_EMAIL=""
+
+RUN apt-get update && apt-get install \
+    git
+
+RUN git config --global user.name ${GIT_USER_NAME}
+RUN git config --global user.email ${GIT_USER_EMAIL}
 RUN git config --global --add safe.directory /app
+
+RUN groupadd -g $GID -o $UNAME
+RUN useradd -m -u $UID -g $GID -o -s /bin/bash $UNAME
+USER $UNAME
 
 WORKDIR /app
