@@ -1,17 +1,13 @@
-const { log } = require('console');
-let fs = require('fs')
+const http = require('http');
 
-fs.readFile('./Files/start.txt', 'utf-8', (error1, data1) => {
-    console.log(data1);
-    fs.readFile(`./Files/${data1}.txt`, 'utf-8', (error2, data2) => {
-        console.log(data2);
-        fs.readFile('./Files/append.txt', 'utf-8', (error3, data3) => {
-            console.log(data3);
-            fs.writeFile('./Files/output.txt', `${data2}\n\n${data3}\n\nDate created ${new Date()}`, (error4, data4) => {
-                console.log('File writthen successfuly')
-            })
-        })
-    })
+//STEP 1: CREATE A SERVER
+const server = http.createServer((request, response) => {
+    response.end('Hello from the server!')
+    console.log('A new request received');
+    //console.log(response);
+});
+
+//SETEP 2: START THE SERVER
+server.listen(8000, '0.0.0.0', () => {
+    console.log('Server has started!');
 })
-
-console.log('Reading file....');
