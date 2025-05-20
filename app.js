@@ -12,7 +12,9 @@ let productListHtml = fs.readFileSync('./Template/product-list.html', 'utf-8')
 let productDetailHtml = fs.readFileSync('./Template/product-details.html', 'utf-8')
 
 //STEP 1: CREATE A SERVER
-const server = http.createServer((request, response) => {
+const server = http.createServer();
+
+server.on('request', (request, response) => {
     let {query, pathname: path} = url.parse(request.url, true)
     //console.log(x);
     //let path = request.url;
@@ -55,7 +57,7 @@ const server = http.createServer((request, response) => {
         });
         response.end(html.replace('{{%CONTENT%}}', 'Error 404: Page not found!'));
     }
-});
+})
 
 //SETEP 2: START THE SERVER
 server.listen(8000, '0.0.0.0', () => {
