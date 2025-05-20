@@ -1,27 +1,15 @@
+//CORE MODULES
 const http = require('http');
 const fs = require('fs');
 const url = require('url');
+
+//USER MODULES
+const replaceHtml = require('./Modules/replaceHtml');
 
 const html = fs.readFileSync('./Template/index.html', 'utf-8')
 let products = JSON.parse(fs.readFileSync('./Data/products.json', 'utf-8'))
 let productListHtml = fs.readFileSync('./Template/product-list.html', 'utf-8')
 let productDetailHtml = fs.readFileSync('./Template/product-details.html', 'utf-8')
-
-function replaceHtml(template, product) {
-    let output = template.replace('{{%IMAGE%}}', product.productImage);
-    output = output.replace('{{%NAME%}}', product.name);
-    output = output.replace('{{%MODELNAME%}}', product.modelName);
-    output = output.replace('{{%MODELNO%}}', product.modelNumber);
-    output = output.replace('{{%SIZE%}}', product.size);
-    output = output.replace('{{%CAMERA%}}', product.camera);
-    output = output.replace('{{%PRICE%}}', product.price);
-    output = output.replace('{{%COLOR%}}', product.color);
-    output = output.replace('{{%ID%}}', product.id);
-    output = output.replace('{{%ROM%}}', product.ROM);
-    output = output.replace('{{%DESC%}}', product.Description);
-
-    return output;
-}
 
 //STEP 1: CREATE A SERVER
 const server = http.createServer((request, response) => {
