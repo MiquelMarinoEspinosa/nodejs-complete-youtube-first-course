@@ -63,3 +63,5 @@ server.on('request', (request, response) => {
 server.listen(8000, '0.0.0.0', () => {
     console.log('Server has started!');
 })
+
+console.log('Nodemon is working');
