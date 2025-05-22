@@ -20,7 +20,7 @@ run:
 up: build run
 
 shell:
-	docker exec -i -t app.node bash
+	docker exec --user node -i -t app.node bash
 
 stop:
 	docker stop app.node
